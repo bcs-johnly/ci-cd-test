@@ -41,12 +41,13 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: app
-          path: publish/
-    
+          path: myapp-${{ env.VERSION }}.zip
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: publish/**
+          files: myapp-${{ env.VERSION }}.zip
+          
   deploy:
    needs: build
    runs-on: ubuntu-latest
