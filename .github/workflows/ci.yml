@@ -31,19 +31,18 @@ jobs:
          dotnet publish -c Release -o publish
 
       - name: Get version
-          id: version
-          run: echo "VERSION=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME}" >> $GITHUB_ENV
 
       - name: Zip
-          run: zip -r myapp-${{ env.VERSION }}.zip publish/
+        run: zip -r myapp-${{ env.VERSION }}.zip publish/
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
         with:
           name: app
           path: publish/
-      
-
+    
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
